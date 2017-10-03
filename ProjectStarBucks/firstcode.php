@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style id="changepoint">
-  .htmlcode{
-
+  <style>
     <?php
-      echo $_POST['context'];
-    ?>
+      if(isset($_POST['CSSContext'])){
+          echo $_POST['CSSContext'];
+      }
 
-  }
+    ?>
   </style>
 </head>
 <body>
-  <div class ="htmlcode">
-    Hi I'm yongwoon Jang
+  <?php
+      if(isset($_POST['HTMLContext'])){
+        echo $_POST['HTMLContext'];
+      }
 
-  </div>
+   ?>
 
+<script>
+  <?php
+      if(isset($_POST['JAVASCRIPTContext'])){
+        echo $_POST['JAVASCRIPTContext'];
+      }
 
-
+   ?>
+</script>
 </body>
 
 </html>

@@ -2,33 +2,42 @@
     color : lawngreen;
     background-color:#343a40;
     font-family:proxima-nova,'Open Sans','Gill Sans MT','Gill Sans',Corbel,Arial,sans-serif;
+
   }
+
   a {
     color : #28a745;
+
   }
+
   .nav-link:focus, .nav-link:hover{
     color : green;
     text-decoration:none;
     font-family:proxima-nova,'Open Sans','Gill Sans MT','Gill Sans',Corbel,Arial,sans-serif;
+
   }
+
   #description{
-    align-items:center;
-    background-color:#4f555a;
+    border: 2px solid rgb(0,0,0);
+    text-align:center;
     border-radius: 5px;
-    color : lawngreen;
+    color : green;
     font-family:proxima-nova,'Open Sans','Gill Sans MT','Gill Sans',Corbel,Arial,sans-serif;
     font-size : 22px;
-    margin-bottom : 10px;
-    padding-top:11px;
-    text-indent:13px;
+    text-indent: 10px;
+
   }
+
   #generator{
     color : lawngreen;
+
   }
 
   .panel-heading:hover {
       cursor:pointer;
+
   }
+
   .panel-heading {
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -36,27 +45,43 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+
   }
 
   .side-tab:hover {
-          cursor: pointer;
-      }
-      .panel.panel-default {
-          border: none;
-          box-shadow: none !important;
-          border-bottom-right-radius: 0px;
-          border-bottom-left-radius: 0px;
+      cursor: pointer;
 
-      }
-      .panel-heading {
-          border: none;
-          background-color: #eee;
+  }
 
-      }
-      .panel-body {
-          background-color: #f5f5f5;
-      }
-      .panel-title {
-          font-weight: 400;
-          color: $white;
-      }
+  .panel.panel-default {
+      border: none;
+      box-shadow: none !important;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+
+  }
+
+  .panel-heading {
+      border: none;
+      background-color: #eee;
+  }
+
+  .panel-body {
+      background-color: #f5f5f5;
+  }
+
+  .panel-title {
+      font-weight: 400;
+      color: $white;
+  }
+
+  .menuButton {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(0,0,0);
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    overflow:hidden;
+    transition: .3s;
+  }

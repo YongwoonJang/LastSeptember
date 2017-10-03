@@ -10,7 +10,7 @@ function add_element($conn, $contents, $name){
 }
 
 function delete_element($conn, $id){
-  $reulst = mysqli_query($conn, 'DELETE FRoM content WHERE id="'.$id.'"');
+  $reulst = mysqli_query($conn, 'DELETE FROM content WHERE id="'.$id.'"');
   return $result;
 }
 
