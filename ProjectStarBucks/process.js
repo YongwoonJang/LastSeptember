@@ -46,11 +46,14 @@ function finder(){
 }
 
 function codeModifier(i){
-  var CSSsource = document.getElementById("newContents"+i).value;
-  var title = document.getElementById("newTitle"+i).value;
-  var id = document.getElementById("newId"+i).value;
-  document.getElementById("id").value = id;
-  document.getElementById("CSScode").value = CSSsource;
+  var htmlsource = document.getElementById("HTMLsourceinsert").value;
+  var csssource = document.getElementById("CSSsourceinsert").value;
+  var javascriptsource = document.getElementById("JAVASCRIPTsourceinsert").value;
+  var title = document.getElementById("inputTitleinsert").value;;
+  document.getElementById("id").value = i;//current id
+  document.getElementById("CSScode").value = csssource;
+  document.getElementById("HTMLcode").value = htmlsource;
+  document.getElementById("JAVASCRIPTcode").value = javascriptsource;
   document.getElementById("title").value = title;
   document.getElementById("codeForm").action = "http://localhost/projectstarbucks/modify.php";
   document.getElementById('codeForm').method = "post";
@@ -62,9 +65,13 @@ var codebtn=document.getElementById("adder");
 codebtn.addEventListener('click',function(){
 
   //data를 저장하기 위한 code.
-  var source = document.getElementById("inputSource").value;
-  var title = document.getElementById("inputTitle").value;
-  document.getElementById("code").value = source;
+  var htmlsource = document.getElementById("HTMLsourceinsert").value;
+  var csssource = document.getElementById("CSSsourceinsert").value;
+  var javascriptsource = document.getElementById("JAVASCRIPTsourceinsert").value;
+  var title = document.getElementById("TITLEsourceinsert").value;
+  document.getElementById("CSScode").value = csssource;
+  document.getElementById("HTMLcode").value = htmlsource;
+  document.getElementById("JAVASCRIPTcode").value = javascriptsource;
   document.getElementById("title").value = title;
   document.getElementById("codeForm").action = "http://localhost/projectstarbucks/insert.php";
   document.getElementById('codeForm').method = "post";

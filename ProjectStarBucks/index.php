@@ -10,7 +10,7 @@
 		$countOfRow = $row['count(*)']; // count of rows;
 
 		//배열 생성
-		$menu = array("insert","delete","modify","search");
+		$menu = array("list", "insert", "delete", "modify", "search");
 
 		function title($titlename){
 			echo '<label class="row" id="description" style="margin-left:0px;">';
@@ -53,17 +53,6 @@
 
 		<nav class="row navbar navbar-expand-lg navbar-light bg-dark" style="margin-bottom: 10px;">
 				 <a class="navbar-brand" href="./index.php" style="color:limegreen;">집으로</a>
-
-				 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				 	<div class="navbar-nav">
-				 		<a class="nav-item nav-link active" href="#" style="color : lawngreen">CSS <span class="sr-only">(current)</span></a>
-				 	</div>
-				 </div>
-
-				 <!-- toggler !-->
-				 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    	 	 	<span class="navbar-toggler-icon"></span>
-  	 		 </button>
 		</nav>
 
 		<!-- Selector(Upper side) !-->
@@ -83,6 +72,8 @@
 														echo "코드 수정";
 													}else if($menuname == "search"){
 														echo "코드 찾기";
+													}else if($menuname == "list"){
+														echo "코드 목록";
 													}
 													echo '</a></div>';
 												}
@@ -90,39 +81,25 @@
 							 		</div>
 					</div>
 
-		<!-- Layout of Selector area(Left side) and Showing are(Right side) !-->
+		<!-- Layout of tab contents part !-->
 		<div class="row">
-				<!-- Selector area(Left side) !-->
-				<div class="flex-column col-md-2" style="font-size:17px; border:2px solid rgb(0,0,0); border-radius:5px;">
-
-						<!-- Saved codes !-->
-							<div id="v-pills-tab" role="tablist" class="nav-pills nav">
-							<?php
-								$tvariable = 0; // variable for setting initial clicked button.
-				      	$result = mysqli_query($conn, "SELECT * FROM content");
-									while($row = mysqli_fetch_assoc($result)){
-										echo '<li class="nav-item">';
-										if($tvariable == 0){
-											echo '<a class="nav-link active" id="v-pills-'.$row['id'].'-tab" data-toggle="pill" href="#v-pills-'.$row['id'].'" role="tab" aria-controls="v-pills-'.$row['id'].'" aria-expanded="true" onClick="changeTab('.$row['id'].')">'.$row['title'].'</a>';
-											$tvariable = 1;
-
-										}else{
-											echo '<a class="nav-link" id="v-pills-'.$row['id'].'-tab" data-toggle="pill" href="#v-pills-'.$row['id'].'" role="tab" aria-controls="v-pills-'.$row['id'].'" aria-expanded="true" onClick="changeTab('.$row['id'].')">'.$row['title'].'</a>';
-
-										}
-										echo '</li>';
-									}
-							?>
-					</div>
-				</div>
-				<!-- end of selector!-->
-
-				<div class="tab-content col-md-10" id="v-pills-tabContent">
-				<!-- Right side part !-->
-
+				<div class="tab-content col-md-12" id="v-pills-tabContent" style="margin-left:0px;">
 								<?php
+								//Listing tab start
+									echo '<div class="tab-pane active" id="v-pills-list" role="tabpanel" aria-labelledby="v-pills-list-tab">';
+									echo '<div class="row">';
+
+									$result = mysqli_query($conn, "SELECT * FROM content");
+									while($row = mysqli_fetch_assoc($result)){
+										echo '<div class="col-sm-4">';
+										echo '<iframe src="./sourcestorage/'.$row['id'].'.php" class="col-sm-11" style="display:block; margin:auto; height:177.273px;" >Good day</iframe>';
+										echo '</div>';
+									}
+									echo '</div>'; //end of row
+									echo '</div>'; //end of listing tab
+
 								//Insert tab start
-									echo '<div class="tab-pane active" id="v-pills-insert" role="tabpanel" aria-labelledby="v-pills-insert-tab">';
+									echo '<div class="tab-pane" id="v-pills-insert" role="tabpanel" aria-labelledby="v-pills-insert-tab">';
 									//code title section
 									title("insert");
 									//code context section
@@ -236,12 +213,12 @@
 
 																	<!-- HTML !-->
 																	<div style="margin-bottom:8px;"> <h6> HTML 코드 </h6> <h6>&lt;body&gt;</h6> </div>
-																	<textarea id="HTMLsource'.$row['id'].'" name="HTMLCodeSection" rows="4" cols="45" style="margin-left:20px; margin-bottom:8px; width:100%;" onkeypress="codeImplementator('.$row['id'].')">'.$row['csscontents'].'</textarea>
+																	<textarea id="HTMLsource'.$row['id'].'" name="HTMLCodeSection" rows="4" cols="45" style="margin-left:20px; margin-bottom:8px; width:100%;" onkeypress="codeImplementator('.$row['id'].')">'.$row['htmlcontents'].'</textarea>
 																	<div style="margin-bottom:15px;"> <h6>&lt;/body&gt; </h6> </div>
 
 																	<!-- JAVASCRIPT !-->
 																	<div style="margin-bottom:8px;"> <h6> JAVASCRIPT 코드 </h6> <h5>&lt;script&gt;</h5> </div>
-																	<textarea id="JAVASCRIPTsource'.$row['id'].'" name="JAVASCRIPTCodeSection" rows="4" cols="45" style="margin-left:20px; margin-bottom:8px; width:100%;" onkeypress="codeImplementator('.$row['id'].')">'.$row['csscontents'].'</textarea>
+																	<textarea id="JAVASCRIPTsource'.$row['id'].'" name="JAVASCRIPTCodeSection" rows="4" cols="45" style="margin-left:20px; margin-bottom:8px; width:100%;" onkeypress="codeImplementator('.$row['id'].')">'.$row['javascriptcontents'].'</textarea>
 																	<div style="margin-bottom:15px;"> <h6>&lt;/script&gt; </h6> </div>
 
 																</div>
@@ -260,7 +237,7 @@
 								//end of contents part
 						 ?>
 
-				</div><!--end of right tab contents!-->
+				</div><!--end of tab contents!-->
 			</div><!-- end of row!-->
 		</div><!-- end of container !-->
 
